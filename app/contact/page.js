@@ -117,8 +117,8 @@ export default function Contact() {
                 Request a Book
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Can't find the book you're looking for? Let us know, and we'll
-                do our best to add it to our library!
+                Can&apos;t find the book you&apos;re looking for? Let us know,
+                and we&apos;ll do our best to add it to our library!
               </p>
             </div>
           </div>
@@ -150,8 +150,8 @@ export default function Contact() {
                 Request Submitted!
               </h3>
               <p className="text-gray-600">
-                Thank you for your request. We'll review it and get back to you
-                soon.
+                Thank you for your request. We&apos;ll review it and get back to
+                you soon.
               </p>
             </div>
           ) : (

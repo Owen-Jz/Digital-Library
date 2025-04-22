@@ -329,7 +329,8 @@ export default function MyLibrary() {
               />
               <div className="flex-1">
                 <h2 className="text-2xl font-semibold text-gray-900">
-                  Welcome back, {user.username}! It's Tuesday, April 22, 2025
+                  Welcome back, {user.username}! It&apos;s Tuesday, April 22,
+                  2025
                 </h2>
                 <p className="text-gray-600 mt-1">
                   Your favorite genres: {user.favoriteGenres.join(", ")}
@@ -655,7 +656,6 @@ export default function MyLibrary() {
               ))}
             </div>
           </motion.section>
-          
         </div>
       </div>
       <Footer />
