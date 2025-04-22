@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { Navbar } from "../Navbar";
 
 // Mock user and book data (replace with API or database fetch)
 const user = {
