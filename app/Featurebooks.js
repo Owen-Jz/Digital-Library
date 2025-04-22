@@ -1,6 +1,5 @@
 /* components/FeaturedBooks.js */
 import Image from "next/image";
-("use client");
 
 export function FeaturedBooks() {
   const books = [
