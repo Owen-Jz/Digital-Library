@@ -4,11 +4,10 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Hero } from "./Hero";
-import { Navbar } from "./Navbar";
 import { Features } from "./Features";
 import { Categories } from "./Categories";
 import { RecentAdditions } from "./Recentadditions";
-import { FeaturedBooks } from "./Featurebooks";
+import { Featuredbooks } from "./Featurebooks";
 import { Footer } from "./Footer";
 
 // Animation variants for different sections
@@ -54,24 +53,23 @@ export default function Home() {
   const footerRef = useRef(null);
 
   // Track when each section is in view
-  const heroInView = useInView(heroRef, { once: true, margin: "-100px" });
+  const heroInView = useInView(heroRef, { once: true, margin: "-50px" });
   const categoriesInView = useInView(categoriesRef, {
     once: true,
-    margin: "-100px",
+    margin: "-50px",
   });
   const featuredBooksInView = useInView(featuredBooksRef, {
     once: true,
-    margin: "-100px",
+    margin: "-50px",
   });
   const recentAdditionsInView = useInView(recentAdditionsRef, {
     once: true,
-    margin: "-100px",
+    margin: "-50px",
   });
-  const footerInView = useInView(footerRef, { once: true, margin: "-100px" });
+  const footerInView = useInView(footerRef, { once: true, margin: "-0px" });
 
   return (
     <div>
-      <Navbar />
       <motion.div
         ref={heroRef}
         initial="hidden"
@@ -94,7 +92,7 @@ export default function Home() {
         animate={featuredBooksInView ? "visible" : "hidden"}
         variants={featuredBooksVariants}
       >
-        <FeaturedBooks />
+        <Featuredbooks />
       </motion.div>
       <motion.div
         ref={recentAdditionsRef}
@@ -109,9 +107,7 @@ export default function Home() {
         initial="hidden"
         animate={footerInView ? "visible" : "hidden"}
         variants={footerVariants}
-      >
-        <Footer />
-      </motion.div>
+      ></motion.div>
     </div>
   );
 }
