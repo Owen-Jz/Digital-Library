@@ -5,6 +5,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { Navbar } from "@/app/Navbar";
 
 // Mock book data (matches Featuredbooks.js and MyLibrary.js)
 const allBooks = [

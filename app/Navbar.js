@@ -30,9 +30,7 @@ export function Navbar() {
   const navItems = [
     { name: "Home", href: "/", active: true },
     { name: "Library", href: "/library" },
-    { name: "Categories", href: "/categories" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "Request", href: "/contact" },
   ];
 
   return (
@@ -170,7 +168,7 @@ export function Navbar() {
                           height={24}
                           className="rounded-full"
                         />
-                        Dashboard
+                        My Library
                       </Link>
                     ) : (
                       <>
@@ -224,7 +222,7 @@ export function Navbar() {
                   height={24}
                   className="rounded-full"
                 />
-                Dashboard
+                My Library
               </Link>
             ) : (
               <>
