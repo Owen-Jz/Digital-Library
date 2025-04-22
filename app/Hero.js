@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export function Hero() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -58,7 +59,6 @@ export function Hero() {
           </form>
         </div>
         <div className="flex-1">
-          import Image from "next/image";
           <Image
             src="/bg.png"
             alt="Digital Library Books"

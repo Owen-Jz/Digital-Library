@@ -1,5 +1,6 @@
 /* components/RecentAdditions.js */
 "use client";
+import Image from "next/image";
 
 export function RecentAdditions() {
   const books = [
