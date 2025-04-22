@@ -58,9 +58,12 @@ export function Hero() {
           </form>
         </div>
         <div className="flex-1">
-          <img
-            src="bg.png"
+          import Image from "next/image";
+          <Image
+            src="/bg.png"
             alt="Digital Library Books"
+            width={1920} // adjust width and height as needed
+            height={1080}
             className="w-full h-auto max-h-[px] object-cover rounded-lg opacity-95 hover:scale-105 hover:opacity-100 transition duration-300"
           />
         </div>

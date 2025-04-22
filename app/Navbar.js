@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,15 +20,14 @@ export function Navbar() {
     <nav className="bg-white text-slate-800 p-4 sticky top-0 z-50 shadow-gray-950">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <a
+        <Link
           href="/"
           className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent"
         >
           Digital Library
           {/* Optional: Replace with image logo */}
           {/* <img src="/logo.png" alt="Digital Library Logo" className="h-8" /> */}
-        </a>
-
+        </Link>
         {/* Mobile Menu Toggle */}
         <button
           className="md:hidden text-2xl focus:outline-none focus:ring-2 focus:ring-teal-600 rounded"

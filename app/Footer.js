@@ -1,5 +1,6 @@
-/* components/Footer.js */
 "use client";
+
+import Link from "next/link";
 
 export function Footer() {
   const navItems = [
@@ -58,14 +59,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-100 pt-8">
           {/* Logo and Contact */}
           <div className="space-y-4">
-            <a
+            <Link
               href="/"
               className="text-xl font-bold bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent"
             >
               Digital Library
               {/* Optional: Replace with image logo */}
               {/* <img src="/logo.png" alt="Digital Library Logo" className="h-8" /> */}
-            </a>
+            </Link>
             <p className="text-base text-slate-600">
               Explore thousands of eBooks, journals, and more.
             </p>
@@ -97,12 +98,12 @@ export function Footer() {
             <ul className="space-y-2">
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <a
+                  <Link
                     href={item.href}
                     className="text-base text-slate-600 hover:text-teal-500 hover:scale-105 focus:ring-2 focus:ring-teal-600 focus:outline-none transition"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -131,8 +132,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-8 border-t border-gray-100 pt-4 text-center">
           <p className="text-sm text-slate-600">
-            &copy; {new Date().getFullYear()} Digital Library. All rights
-            reserved.
+            © {new Date().getFullYear()} Digital Library. All rights reserved.
           </p>
           <div className="w-16 h-1 bg-teal-600 mx-auto mt-2"></div>
         </div>

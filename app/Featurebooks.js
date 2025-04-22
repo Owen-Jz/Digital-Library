@@ -1,5 +1,6 @@
 /* components/FeaturedBooks.js */
-"use client";
+import Image from "next/image";
+("use client");
 
 export function FeaturedBooks() {
   const books = [
@@ -30,7 +31,6 @@ export function FeaturedBooks() {
     },
   ];
 
-
   return (
     <section className="bg-white py-12">
       <div className="container mx-auto px-4">
@@ -44,9 +44,11 @@ export function FeaturedBooks() {
               key={index}
               className="p-4 bg-white rounded-lg border border-gray-100 hover:bg-gray-50 hover:scale-105 transition duration-300"
             >
-              <img
+              <Image
                 src={book.image}
                 alt={book.title}
+                width={800} // or whatever width you want
+                height={400} // or whatever height you want
                 className="w-full h-[400px] object-cover rounded-md mb-4"
               />
               <h3 className="text-lg font-bold text-teal-600">{book.title}</h3>

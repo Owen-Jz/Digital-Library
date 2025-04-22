@@ -43,9 +43,11 @@ export function RecentAdditions() {
               key={index}
               className="p-4 bg-white rounded-lg border border-gray-100 hover:bg-gray-50 hover:scale-105 transition duration-300"
             >
-              <img
+              <Image
                 src={book.image}
                 alt={book.title}
+                width={800}
+                height={400}
                 className="w-full h-[200px] object-cover rounded-md mb-4"
               />
               <h3 className="text-lg font-bold text-teal-600">{book.title}</h3>
