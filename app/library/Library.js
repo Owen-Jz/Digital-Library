@@ -13,7 +13,7 @@ const books = [
     department: "Computer Science",
     semester: "3rd",
     genre: "Textbook",
-    cover: "/books/algorithms.jpg",
+    cover: "/1.jpg",
     description: "A comprehensive guide to algorithms.",
   },
   {
@@ -23,7 +23,7 @@ const books = [
     department: "Literature",
     semester: "2nd",
     genre: "Fiction",
-    cover: "/books/pride.jpg",
+    cover: "/2.jpg",
     description: "A classic romance novel.",
   },
   {
@@ -33,7 +33,7 @@ const books = [
     department: "Physics",
     semester: "1st",
     genre: "Textbook",
-    cover: "/books/physics.jpg",
+    cover: "/3.jpeg",
     description: "Core physics concepts.",
   },
   {
@@ -43,7 +43,7 @@ const books = [
     department: "Literature",
     semester: "4th",
     genre: "Fiction",
-    cover: "/books/gatsby.jpg",
+    cover: "/4.jpeg",
     description: "A tale of the Jazz Age.",
   },
   {
@@ -53,7 +53,7 @@ const books = [
     department: "Computer Science",
     semester: "2nd",
     genre: "Textbook",
-    cover: "/books/datastructures.jpg",
+    cover: "/6.jpeg",
     description: "In-depth data structures.",
   },
 ];

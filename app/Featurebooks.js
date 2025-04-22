@@ -7,26 +7,26 @@ export function FeaturedBooks() {
       title: "The Great Novel",
       author: "Jane Doe",
       description: "A captivating story of adventure and discovery.",
-      image: "1.jpg",
+      image: "/1.jpg",
     },
     {
       title: "Science Unveiled",
       author: "John Smith",
       description:
         "Explore the wonders of the universe in this insightful guide.",
-      image: "2.jpg",
+      image: "/2.jpg",
     },
     {
       title: "Academic Insights",
       author: "Dr. Emily Brown",
       description: "A collection of research papers for scholars.",
-      image: "3.jpeg",
+      image: "/3.jpeg",
     },
     {
       title: "Magical Tales",
       author: "Sarah Lee",
       description: "Enchanting stories for young readers and families.",
-      image: "4.jpeg",
+      image: "/4.jpeg",
     },
   ];
 

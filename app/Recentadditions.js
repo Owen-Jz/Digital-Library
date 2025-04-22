@@ -8,26 +8,26 @@ export function RecentAdditions() {
       title: "Mystery of the Ages",
       author: "Alice Carter",
       description: "A thrilling mystery that unravels ancient secrets.",
-      image: "https://placehold.co/200x300",
+      image: "/1.jpg",
     },
     {
       title: "Tech Frontiers",
       author: "Mark Wilson",
       description:
         "Discover the latest advancements in technology and innovation.",
-      image: "https://placehold.co/200x300",
+      image: "/2.jpg",
     },
     {
       title: "Scholarly Pursuits",
       author: "Dr. Laura Green",
       description: "In-depth research papers for academic enthusiasts.",
-      image: "https://placehold.co/200x300",
+      image: "/3.jpeg",
     },
     {
       title: "Adventure Stories",
       author: "Tom Baker",
       description: "Exciting tales for young readers and adventurers.",
-      image: "https://placehold.co/200x300",
+      image: "/4.jpeg",
     },
   ];
 
