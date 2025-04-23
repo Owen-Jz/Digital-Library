@@ -72,7 +72,7 @@ export function Navbar() {
                 height={24}
                 className="rounded-full"
               />
-              Welcome to Your Digital Library
+              My Library
             </Link>
           ) : (
             <>
