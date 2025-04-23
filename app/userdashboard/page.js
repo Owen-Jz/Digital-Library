@@ -33,7 +33,7 @@ const borrowedBooks = [
     id: 3,
     title: "Pride and Prejudice",
     author: "Jane Austen",
-    cover: "/6.jpeg",
+    cover: "books/6.jpg",
     dueDate: "2025-05-15",
   },
 ];
@@ -43,13 +43,13 @@ const readBooks = [
     id: 5,
     title: "Data Structures",
     author: "Mark Allen Weiss",
-    cover: "/3.jpeg",
+    cover: "books/8.jpg",
   },
   {
     id: 6,
     title: "To Kill a Mockingbird",
     author: "Harper Lee",
-    cover: "/4.jpeg",
+    cover: "books/9.jpg",
   },
 ];
 
@@ -58,14 +58,14 @@ const suggestedBooks = [
     id: 3,
     title: "Physics for Scientists",
     author: "Paul A. Tipler",
-    cover: "/5.jpeg",
+    cover: "books/10.jpg",
     description: "Core physics concepts.",
   },
   {
     id: 4,
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
-    cover: "/6.jpeg",
+    cover: "books/9.jpg",
     description: "A tale of the Jazz Age.",
   },
 ];

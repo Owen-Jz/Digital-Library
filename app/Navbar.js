@@ -42,7 +42,7 @@ export function Navbar() {
             href="/"
             className="text-xl font-bold bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent"
           >
-            Digital Library
+            Inkspire
           </Link>
         </div>
 
@@ -72,7 +72,7 @@ export function Navbar() {
                 height={24}
                 className="rounded-full"
               />
-              My Library
+              Welcome to Your Digital Library
             </Link>
           ) : (
             <>
