@@ -26,7 +26,36 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed top-[70px] left-0 h-screen w-16 bg-white flex flex-col items-center py-6 gap-8 sm:w-20 md:w-24 z-10">
+    <aside
+      className="
+        fixed
+        bottom-0
+        left-0
+        w-full
+        bg-white
+        flex
+        flex-row
+        justify-around
+        items-center
+        py-2
+        border-t
+        z-10
+
+        sm:top-[70px]
+        sm:left-0
+        sm:bottom-auto
+        sm:flex-col
+        sm:items-center
+        sm:justify-start
+        sm:py-6
+        sm:gap-8
+        sm:w-20
+        md:w-24
+        sm:h-screen
+        sm:border-t-0
+        sm:border-r
+      "
+    >
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         return (
@@ -36,9 +65,8 @@ export default function Sidebar() {
             aria-current={isActive ? "page" : undefined}
           >
             <motion.div
-              className={`p-2 rounded-2xl transition-colors ${
-                isActive ? "bg-teal-200 text-teal-600" : "hover:bg-teal-100"
-              }`}
+              className={`p-2 rounded-2xl transition-colors flex items-center justify-center
+                ${isActive ? "bg-teal-200 text-teal-600" : "hover:bg-teal-100"}`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               aria-label={item.name}
