@@ -49,7 +49,7 @@ export function RecentAdditions() {
                 alt={book.title}
                 width={800}
                 height={400}
-                className="w-full h-[200px] object-cover rounded-md mb-4"
+                className="w-full h-[400px] object-cover rounded-md mb-4"
               />
               <h3 className="text-lg font-bold text-teal-600">{book.title}</h3>
               <p className="text-sm text-slate-600 mb-2">by {book.author}</p>

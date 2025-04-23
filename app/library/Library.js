@@ -564,7 +564,7 @@ export default function Library() {
                       "0 4px 8px rgba(0,0,0,0.1), inset 0 -2px 4px rgba(0,0,0,0.05)",
                   }}
                 >
-                  <div className="relative w-full h-[225px]">
+                  <div className="relative w-full h-[300px]">
                     <Image
                       src={book.cover}
                       alt={book.title}

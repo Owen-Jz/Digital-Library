@@ -1,4 +1,3 @@
-/* components/Categories.js */
 "use client";
 
 export function Categories() {
@@ -6,7 +5,7 @@ export function Categories() {
     {
       title: "Fiction",
       description:
-        "Dive into novels, short stories, and literary works full of imagination.",
+        "Explore novels and literary works to inspire creativity and critical thinking for university students.",
       icon: (
         <svg
           className="w-10 h-10 text-teal-600 hover:text-teal-800 hover:rotate-12 transition"
@@ -27,7 +26,7 @@ export function Categories() {
     {
       title: "Non-Fiction",
       description:
-        "Explore biographies, essays, and factual content that inform and inspire.",
+        "Discover biographies, essays, and research-driven texts to support academic inquiry and professional growth.",
       icon: (
         <svg
           className="w-10 h-10 text-teal-600 hover:text-teal-800 hover:rotate-12 transition"
@@ -48,7 +47,7 @@ export function Categories() {
     {
       title: "Academic",
       description:
-        "Access journals, research papers, and textbooks for scholarly pursuits.",
+        "Access journals, textbooks, and research papers essential for university coursework and scholarly research.",
       icon: (
         <svg
           className="w-10 h-10 text-teal-600 hover:text-teal-800 hover:rotate-12 transition"
@@ -66,37 +65,16 @@ export function Categories() {
         </svg>
       ),
     },
-    {
-      title: "Children",
-      description:
-        "Discover picture books and stories for young readers and families.",
-      icon: (
-        <svg
-          className="w-10 h-10 text-teal-600 hover:text-teal-800 hover:rotate-12 transition"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.915a1 1 0 00.95-.69l1.519-4.674z"
-          />
-        </svg>
-      ),
-    },
   ];
 
   return (
     <section className="bg-gray-50 py-12 border-t border-b border-gray-100">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-10 bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent tracking-tight relative group">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-10 bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent tracking-tight relative group font-raleway">
           Browse by Category
           <span className="block w-24 h-1 bg-gradient-to-r from-teal-600 to-teal-800 mx-auto mt-3 transform group-hover:scale-x-110 transition-transform duration-300"></span>
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {categories.map((category, index) => (
             <a
               key={index}
@@ -110,11 +88,13 @@ export function Categories() {
                 <div className="bg-teal-50 p-3 rounded-full transform hover:scale-110 hover:bg-teal-100 transition">
                   {category.icon}
                 </div>
-                <h3 className="text-lg font-bold text-teal-600">
+                <h3 className="text-lg font-bold text-teal-600 font-raleway">
                   {category.title}
                 </h3>
               </div>
-              <p className="text-base text-slate-600">{category.description}</p>
+              <p className="text-base text-slate-600 font-raleway">
+                {category.description}
+              </p>
             </a>
           ))}
         </div>
