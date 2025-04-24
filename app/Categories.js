@@ -71,7 +71,7 @@ export function Categories() {
     <section className="bg-gray-50 py-12 border-t border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-10 bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent tracking-tight relative group font-raleway">
-          Browse by Category
+          Book Categories
           <span className="block w-24 h-1 bg-gradient-to-r from-teal-600 to-teal-800 mx-auto mt-3 transform group-hover:scale-x-110 transition-transform duration-300"></span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">

@@ -13,69 +13,86 @@ const userData = [
   { matno: "u2020/3402125", username: "Michael", department: "Engineering" },
 ];
 
-// Mock list of valid book IDs
 const validBookIds = ["B123", "B124", "B125", "B126"];
 
+// Mock pending borrowing requests
+const initialPendingRequests = [
+  { requestId: "req1", bookId: "B123", matno: "u2020/3402122" },
+  { requestId: "req2", bookId: "B124", matno: "u2020/3402123" },
+  { requestId: "req3", bookId: "B125", matno: "u2020/3402124" },
+];
+
 export default function DashboardContent() {
-  // Form state
-  const [formData, setFormData] = useState({
-    bookId: "",
-    matno: "",
-  });
-  const [errors, setErrors] = useState({});
+  const [pendingRequests, setPendingRequests] = useState(
+    initialPendingRequests
+  );
   const [borrowedBooks, setBorrowedBooks] = useState([]);
+  const [errors, setErrors] = useState({});
 
-  // Handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  // Validate form and approve borrowing
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleApprove = (request) => {
     const newErrors = {};
 
     // Validate book ID
-    if (!formData.bookId.trim()) {
-      newErrors.bookId = "Book ID is required";
-    } else if (!validBookIds.includes(formData.bookId)) {
-      newErrors.bookId = "Invalid book ID";
+    if (!validBookIds.includes(request.bookId)) {
+      newErrors[request.requestId] = `Invalid book ID: ${request.bookId}`;
     }
 
     // Validate matno
-    if (!formData.matno.trim()) {
-      newErrors.matno = "Matriculation number is required";
-    } else {
-      const user = userData.find((u) => u.matno === formData.matno);
-      if (!user) {
-        newErrors.matno = "Invalid matriculation number";
-      }
+    const user = userData.find((u) => u.matno === request.matno);
+    if (!user) {
+      newErrors[
+        request.requestId
+      ] = `Invalid matriculation number: ${request.matno}`;
+    }
+
+    // Check for duplicate borrowing
+    const alreadyBorrowed = borrowedBooks.some(
+      (book) =>
+        book.bookId === request.bookId && book.studentName === user?.username
+    );
+    if (alreadyBorrowed) {
+      newErrors[request.requestId] =
+        "This book is already borrowed by this student";
     }
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+      setErrors((prev) => ({ ...prev, ...newErrors }));
       return;
     }
 
     // Generate borrowing record
-    const user = userData.find((u) => u.matno === formData.matno);
     const issueDate = new Date();
     const returnDate = new Date(issueDate);
-    returnDate.setDate(issueDate.getDate() + 14); // 14 days from issue
+    returnDate.setDate(issueDate.getDate() + 14);
 
     const borrowingRecord = {
-      bookId: formData.bookId,
+      bookId: request.bookId,
       studentName: user.username,
-      issueDate: issueDate.toISOString().split("T")[0], // YYYY-MM-DD
-      returnDate: returnDate.toISOString().split("T")[0], // YYYY-MM-DD
+      issueDate: issueDate.toISOString().split("T")[0],
+      returnDate: returnDate.toISOString().split("T")[0],
     };
 
-    // Add to borrowed books and reset form
+    // Add to borrowed books and remove from pending
     setBorrowedBooks((prev) => [...prev, borrowingRecord]);
-    setFormData({ bookId: "", matno: "" });
-    setErrors({});
+    setPendingRequests((prev) =>
+      prev.filter((req) => req.requestId !== request.requestId)
+    );
+    setErrors((prev) => {
+      const newErrors = { ...prev };
+      delete newErrors[request.requestId];
+      return newErrors;
+    });
+  };
+
+  const handleDisapprove = (requestId) => {
+    setPendingRequests((prev) =>
+      prev.filter((req) => req.requestId !== requestId)
+    );
+    setErrors((prev) => {
+      const newErrors = { ...prev };
+      delete newErrors[requestId];
+      return newErrors;
+    });
   };
 
   return (
@@ -83,71 +100,133 @@ export default function DashboardContent() {
       {/* Greeting */}
       <div className="space-y-4">
         <h1 className="text-4xl sm:text-5xl font-bold text-black">
-          Approve Book Borrowing
+          Manage Book Borrowing
         </h1>
         <p className="text-2xl sm:text-3xl font-normal text-gray-600">
-          Enter the details for a student to borrow
+          Review and approve or disapprove borrowing requests
         </p>
       </div>
 
-      {/* Borrowing Form */}
+      {/* Pending Requests */}
       <div className="bg-white rounded-2xl shadow-sm p-6">
-        <h2 className="text-2xl font-bold text-black mb-4">Borrow a Book</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label
-              htmlFor="bookId"
-              className="block text-lg font-normal text-black mb-1"
-            >
-              Book ID
-            </label>
-            <input
-              type="text"
-              id="bookId"
-              name="bookId"
-              value={formData.bookId}
-              onChange={handleChange}
-              className={`w-full bg-gray-50 text-black border ${
-                errors.bookId ? "border-red-500" : "border-gray-200"
-              } rounded-md px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600 transition-colors`}
-              placeholder="e.g., B123"
-              aria-label="Enter book ID"
-            />
-            {errors.bookId && (
-              <p className="mt-1 text-sm text-red-500">{errors.bookId}</p>
-            )}
-          </div>
-          <div>
-            <label
-              htmlFor="matno"
-              className="block text-lg font-normal text-black mb-1"
-            >
-              Matriculation Number
-            </label>
-            <input
-              type="text"
-              id="matno"
-              name="matno"
-              value={formData.matno}
-              onChange={handleChange}
-              className={`w-full bg-gray-50 text-black border ${
-                errors.matno ? "border-red-500" : "border-gray-200"
-              } rounded-md px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600 transition-colors`}
-              placeholder="e.g., u2020/3402122"
-              aria-label="Enter matriculation number"
-            />
-            {errors.matno && (
-              <p className="mt-1 text-sm text-red-500">{errors.matno}</p>
-            )}
-          </div>
-          <button
-            type="submit"
-            className="px-6 py-2 bg-teal-600 text-white rounded-xl shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-600 transition-colors"
-            aria-label="Approve borrowing"
-          >
-            Approve Borrowing
-          </button>
-        </form>
+        <h2 className="text-2xl font-bold text-black mb-4">
+          Pending Borrowing Requests
+        </h2>
+        <div className="hidden sm:block overflow-x-auto">
+          <table className="min-w-full w-full text-left">
+            <thead>
+              <tr className="border-b border-gray-200 bg-gray-50">
+                <th className="py-3 px-4 font-medium text-black text-lg">
+                  Book ID
+                </th>
+                <th className="py-3 px-4 font-medium text-black text-lg">
+                  Student Matric No
+                </th>
+                <th className="py-3 px-4 font-medium text-black text-lg">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {pendingRequests.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan="3"
+                    className="py-3 px-4 text-center text-gray-600 text-base font-normal"
+                  >
+                    No pending requests
+                  </td>
+                </tr>
+              ) : (
+                pendingRequests.map((request) => (
+                  <tr
+                    key={request.requestId}
+                    className="border-b border-gray-200 hover:bg-teal-50 transition-colors"
+                  >
+                    <td className="py-3 px-4 text-black text-base font-normal">
+                      {request.bookId}
+                    </td>
+                    <td className="py-3 px-4 text-black text-base font-normal">
+                      {request.matno}
+                    </td>
+                    <td className="py-3 px-4 text-black text-base font-normal">
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() => handleApprove(request)}
+                          className="px-4 py-1 bg-teal-600 text-white rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-600 transition-colors"
+                          aria-label={`Approve request for book ${request.bookId}`}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          onClick={() => handleDisapprove(request.requestId)}
+                          className="px-4 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 transition-colors"
+                          aria-label={`Disapprove request for book ${request.bookId}`}
+                        >
+                          Disapprove
+                        </button>
+                      </div>
+                      {errors[request.requestId] && (
+                        <p className="mt-1 text-sm text-red-500">
+                          {errors[request.requestId]}
+                        </p>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        {/* Mobile Card Layout for Pending Requests */}
+        <div className="sm:hidden space-y-4">
+          {pendingRequests.length === 0 ? (
+            <p className="text-center text-gray-600 text-base font-normal">
+              No pending requests
+            </p>
+          ) : (
+            pendingRequests.map((request) => (
+              <div
+                key={request.requestId}
+                className="bg-white rounded-xl shadow-sm p-4 border border-gray-200 hover:bg-teal-50 transition-colors"
+              >
+                <div className="space-y-2">
+                  <div>
+                    <span className="font-medium text-gray-700">Book ID:</span>{" "}
+                    <span className="text-black">{request.bookId}</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-gray-700">
+                      Matric No:
+                    </span>{" "}
+                    <span className="text-black">{request.matno}</span>
+                  </div>
+                  <div className="flex space-x-2">
+                    <button
+                      onClick={() => handleApprove(request)}
+                      className="px-4 py-1 bg-teal-600 text-white rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-600 transition-colors"
+                      aria-label={`Approve request for book ${request.bookId}`}
+                    >
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => handleDisapprove(request.requestId)}
+                      className="px-4 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 transition-colors"
+                      aria-label={`Disapprove request for book ${request.bookId}`}
+                    >
+                      Disapprove
+                    </button>
+                  </div>
+                  {errors[request.requestId] && (
+                    <p className="mt-1 text-sm text-red-500">
+                      {errors[request.requestId]}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
 
       {/* Borrowed Books Table */}
@@ -185,7 +264,7 @@ export default function DashboardContent() {
               ) : (
                 borrowedBooks.map((item, index) => (
                   <tr
-                    key={index}
+                    key={`${item.bookId}-${item.studentName}-${index}`}
                     className={`border-b border-gray-200 ${
                       index % 2 === 0 ? "bg-white" : "bg-gray-50"
                     } hover:bg-teal-50 transition-colors`}
@@ -217,7 +296,7 @@ export default function DashboardContent() {
           ) : (
             borrowedBooks.map((item, index) => (
               <div
-                key={index}
+                key={`${item.bookId}-${item.studentName}-${index}`}
                 className="bg-white rounded-xl shadow-sm p-4 border border-gray-200 hover:bg-teal-50 transition-colors"
               >
                 <div className="space-y-2">

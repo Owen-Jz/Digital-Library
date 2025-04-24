@@ -4,7 +4,7 @@ export default function DashNavbar() {
   return (
     <nav className="hidden md:flex bg-white px-4 py-4 sm:px-8 md:px-16 lg:px-24 justify-between items-center gap-4 sm:gap-8 fixed top-0 left-0 right-0 z-20">
       <Link href="/" className="text-black text-2xl md:text-3xl font-bold">
-        Digital Library
+        Inkspire
       </Link>
 
       <div className="flex-grow max-w-[600px] w-full relative">

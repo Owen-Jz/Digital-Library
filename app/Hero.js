@@ -9,11 +9,8 @@ export function Hero() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/library?query=${encodeURIComponent(searchQuery)}`);
-    }
+  const handleGetStarted = () => {
+    router.push("/library");
   };
 
   // Animation for auto-hover effect
@@ -41,39 +38,15 @@ export function Hero() {
             anywhere. Unlock endless learning opportunities and fuel your
             curiosity with just a click.
           </p>
-          <form
-            onSubmit={handleSearch}
-            className="flex items-center max-w-md bg-gray-100 rounded-full p-2"
-          >
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search for a book..."
-              className="flex-1 px-3 py-1 text-slate-700 text-base outline-none rounded-full bg-transparent font-raleway"
-              aria-label="Search books"
-            />
+          <div className="flex items-center max-w-md">
             <button
-              type="submit"
-              className="p-2 bg-teal-600 rounded-full hover:bg-teal-700 transition"
-              aria-label="Search"
+              onClick={handleGetStarted}
+              className="px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition font-raleway"
+              aria-label="Get Started"
             >
-              <svg
-                className="w-5 h-5 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+              Get Started
             </button>
-          </form>
+          </div>
         </div>
         <div className="flex-1 mt-6 md:mt-0">
           <motion.div animate={imageAnimation}>
